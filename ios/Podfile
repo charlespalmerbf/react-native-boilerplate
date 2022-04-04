@@ -19,6 +19,8 @@ target 'BF_RN_Boilerplate' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'react-native-orientation', :path => '../node_modules/react-native-orientation'
+
   target 'BF_RN_BoilerplateTests' do
     inherit! :complete
     # Pods for testing
