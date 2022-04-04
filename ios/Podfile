@@ -21,6 +21,8 @@ target 'BF_RN_Boilerplate' do
 
   pod 'react-native-orientation', :path => '../node_modules/react-native-orientation'
 
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
   target 'BF_RN_BoilerplateTests' do
     inherit! :complete
     # Pods for testing
