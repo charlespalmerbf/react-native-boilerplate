@@ -25,6 +25,8 @@ target 'BF_RN_Boilerplate' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   target 'BF_RN_BoilerplateTests' do
     inherit! :complete
     # Pods for testing

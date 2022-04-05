@@ -24,6 +24,14 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>Give the application permission to use your microphone. Your record wont be shared without your permission.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Give the application permission to use your photos. Your photos wont be shared without your permission.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string/>
+    <key>NSCameraUsageDescription</key>
+    <string>Give the application permission to use your camera. Your photos wont be shared without your permission.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
