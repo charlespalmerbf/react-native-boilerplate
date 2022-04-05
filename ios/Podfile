@@ -23,6 +23,8 @@ target 'BF_RN_Boilerplate' do
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'BF_RN_BoilerplateTests' do
     inherit! :complete
     # Pods for testing
