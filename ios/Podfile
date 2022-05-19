@@ -27,6 +27,8 @@ target 'BF_RN_Boilerplate' do
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
+  pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
+
   target 'BF_RN_BoilerplateTests' do
     inherit! :complete
     # Pods for testing

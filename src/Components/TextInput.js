@@ -12,7 +12,7 @@ const PrimaryTextInput = props => {
       value={props.value}
       placeholder={props.placeholder}
       onChangeText={props.onChangeText}
-      secureTextEntry={props.secureTextEntry === true}
+      secureTextEntry={props.secureTextEntry}
     />
   );
 };
@@ -21,11 +21,8 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     backgroundColor: '#fff',
-    marginBottom: 15,
+    marginBottom: '3%',
     borderRadius: 500,
-  },
-  hidden: {
-    opacity: 0.0,
   },
 });
 

@@ -5,8 +5,7 @@ import Text from '../Components/Text';
 
 const LoadingState = props => {
   return (
-    <View
-      style={styles.background}>
+    <View style={styles.background}>
       <Image
         style={styles.spinnerImage}
         source={require('../assets/spinner.gif')}

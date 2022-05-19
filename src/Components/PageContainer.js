@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, StyleSheet, Platform} from 'react-native';
 
-const PageContainer = ({children, noPadding = false}) => {
+const PageContainer = ({children, noPadding}) => {
   return (
-    <View style={[styles.container, noPadding && {padding: 0, paddingTop: 0}]}>
+    <View style={[styles.container, noPadding && styles.noPadding]}>
       {children}
     </View>
   );
@@ -14,13 +14,10 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   container: {
-    height: '100%',
-    width: '100%',
     backgroundColor: '#FAF6F4',
     alignItems: 'center',
     padding: 36,
     paddingTop: Platform.OS === 'ios' ? 50 : 36,
-    flex: 1,
   },
 });
 

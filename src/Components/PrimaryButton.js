@@ -18,16 +18,15 @@ const styles = StyleSheet.create({
   primaryButton: {
     backgroundColor: '#2DAC59',
     borderRadius: 50,
-    justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    margin: 10,
+    margin: '4%',
   },
 
   primaryButtonText: {
     fontSize: 16,
     color: '#F6F9FC',
-    margin: 15,
+    margin: '5%',
   },
 });
 
