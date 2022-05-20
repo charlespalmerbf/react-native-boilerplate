@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {NativeRouter as Router, Route, Routes} from 'react-router-native';
-import {BackHandler, StatusBar, Naviga} from 'react-native';
+import {BackHandler, StatusBar} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import Orientation from 'react-native-orientation-locker';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
