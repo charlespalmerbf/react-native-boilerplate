@@ -9,6 +9,7 @@ import Text from '../Components/Text';
 
 import {usePopup} from '../Context/PopupContext';
 import {useLogin} from '../Context/LoginContext';
+import AndroidBackHandler from '../Components/AndroidBackHandler';
 
 const LoginScreen = () => {
   const [password, setPassword] = useState();
@@ -19,8 +20,9 @@ const LoginScreen = () => {
   const login = useLogin();
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor: "#FAF6F4"}}>
       <PageContainer>
+        <AndroidBackHandler onPress={() => console.log("FIRING")}/>
         <Image
           style={styles.logoImage}
           source={require('../Assets/logo.png')}

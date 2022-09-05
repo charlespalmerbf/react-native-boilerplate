@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
 import {NativeRouter as Router, Route, Routes} from 'react-router-native';
-import {BackHandler} from 'react-native';
+import {BackHandler, StatusBar} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import Orientation from 'react-native-orientation-locker';
+import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 import Login from './src/Screens/Login';
 import Register from './src/Screens/Register';
@@ -14,6 +15,8 @@ export default function App() {
   useEffect(() => {
     SplashScreen?.hide();
     Orientation.lockToPortrait();
+    SystemNavigationBar.setNavigationBarDividerColor("transparent")
+    SystemNavigationBar.setNavigationColor("transparent")
 
     const backAction = () => {
       return true;
@@ -25,18 +28,22 @@ export default function App() {
     );
 
     return () => backHandler.remove();
+
   }, []);
 
   return (
-    <LoginProvider>
-      <PopupProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
-        </Router>
-      </PopupProvider>
-    </LoginProvider>
+    <>
+      <StatusBar translucent={true} backgroundColor={'transparent'} barStyle={'dark-content'} />
+      <LoginProvider>
+        <PopupProvider>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
+          </Router>
+        </PopupProvider>
+      </LoginProvider>
+    </>
   );
 }
