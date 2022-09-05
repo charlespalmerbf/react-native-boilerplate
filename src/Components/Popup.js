@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {View, Animated, Modal, StyleSheet} from 'react-native';
 
-import Text from '../Components/Text';
-import PrimaryButton from './PrimaryButton';
+import Text from 'components/Text';
+import PrimaryButton from 'components/PrimaryButton';
 
 const ModalPopup = ({visible, children}) => {
   const [showModal, setShowModal] = useState(visible);

@@ -1,23 +1,21 @@
 import React from 'react';
 import {View, StyleSheet, Platform} from 'react-native';
 
-const PageContainer = ({children, noPadding}) => {
+const PageContainer = ({children}) => {
   return (
-    <View style={[styles.container, noPadding && styles.noPadding]}>
+    <View style={styles.container}>
       {children}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  noPadding: {
-    padding: 0,
-  },
   container: {
-    backgroundColor: '#FAF6F4',
+    display: 'flex',
+    flex: 1,
+    backgroundColor: "#fff",
     alignItems: 'center',
-    padding: 36,
-    paddingTop: Platform.OS === 'ios' ? 50 : 36,
+    padding: 36
   },
 });
 

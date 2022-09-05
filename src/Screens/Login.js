@@ -2,68 +2,60 @@ import React, {useState} from 'react';
 import {ScrollView, Image, StyleSheet} from 'react-native';
 import {Link, useNavigate} from 'react-router-native';
 
-import PrimaryButton from '../Components/PrimaryButton';
-import PageContainer from '../Components/PageContainer';
-import PrimaryTextInput from '../Components/TextInput';
-import Text from '../Components/Text';
+import PrimaryButton from 'components/PrimaryButton';
+import PageContainer from 'components/PageContainer';
+import PrimaryTextInput from 'components/TextInput';
+import {MediumText} from 'components/Text';
 
-import {usePopup} from '../Context/PopupContext';
-import {useLogin} from '../Context/LoginContext';
-import AndroidBackHandler from '../Components/AndroidBackHandler';
+import {useLogin} from 'context/LoginContext';
+import AndroidBackHandler from 'components/AndroidBackHandler';
 
 const LoginScreen = () => {
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
 
   const navigate = useNavigate();
-  const popup = usePopup();
   const login = useLogin();
 
   return (
-    <ScrollView style={{backgroundColor: "#FAF6F4"}}>
-      <PageContainer>
-        <AndroidBackHandler onPress={() => console.log("FIRING")}/>
-        <Image
-          style={styles.logoImage}
-          source={require('../Assets/logo.png')}
-        />
+    <PageContainer>
+      <AndroidBackHandler onPress={() => console.log("FIRING")}/>
+      <Image
+        style={styles.logoImage}
+        source={require('assets/logo.png')}
+      />
 
-        <Text style={styles.pageTitle}>Welcome</Text>
+      <MediumText style={styles.pageTitle}>Welcome</MediumText>
 
-        <Text style={styles.pageHeaders}>Email Address</Text>
+      <MediumText style={styles.pageHeaders}>Email Address</MediumText>
 
-        <PrimaryTextInput
-          placeholder={'Email Address'}
-          value={email}
-          onChangeText={val => setEmail(val)}
-        />
+      <PrimaryTextInput
+        placeholder={'Email Address'}
+        value={email}
+        onChangeText={val => setEmail(val)}
+      />
 
-        <Text style={styles.pageHeaders}>Password</Text>
+      <MediumText style={styles.pageHeaders}>Password</MediumText>
 
-        <PrimaryTextInput
-          placeholder={'Password'}
-          value={password}
-          onChangeText={val => setPassword(val)}
-          secureTextEntry={true}
-        />
+      <PrimaryTextInput
+        placeholder={'Password'}
+        value={password}
+        onChangeText={val => setPassword(val)}
+        secureTextEntry={true}
+      />
 
-        <Link
-          to="/forgot-password"
-          underlayColor="#cac7c6"
-          style={styles.forgottenPassword}>
-          <Text style={styles.forgottenPasswordText}>Forgotten password? </Text>
-        </Link>
+      <Link
+        to="/forgot-password"
+        underlayColor="#cac7c6"
+        style={styles.forgottenPassword}>
+        <MediumText style={styles.forgottenPasswordText}>Forgotten password? </MediumText>
+      </Link>
 
-        <PrimaryButton text="Sign In" onPress={() => console.log('Sign in')} />
+      <PrimaryButton onPress={() => console.log('Test')}><MediumText>Sign In</MediumText></PrimaryButton>
 
-        <PrimaryButton
-          text="Sign Up"
-          onPress={() => navigate('/register')}
-          style={styles.signupButton}
-          textStyle={styles.signupButton}
-        />
-      </PageContainer>
-    </ScrollView>
+      <PrimaryButton onPress={() => console.log('Test')}><MediumText>Sign Up</MediumText></PrimaryButton>
+
+    </PageContainer>
   );
 };
 
