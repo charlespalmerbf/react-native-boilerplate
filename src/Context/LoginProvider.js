@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {LoginContext, useLogin, useLoggedInUser} from '../Context/LoginContext';
+import {LoginContext, useLogin, useLoggedInUser} from 'context/LoginContext';
 
 class LoginProvider extends Component {
   constructor(props) {

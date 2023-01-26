@@ -1,18 +1,13 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {StyleSheet, TextInput} from 'react-native';
 
 const PrimaryTextInput = props => {
   return (
     <TextInput
-      label={props.label}
+      {...props}
       style={[styles.input, props.style]}
       mode="outlined"
       theme={{colors: {primary: 'grey'}, roundness: props.roundness}}
-      value={props.value}
-      placeholder={props.placeholder}
-      onChangeText={props.onChangeText}
-      secureTextEntry={props.secureTextEntry}
     />
   );
 };
@@ -20,9 +15,8 @@ const PrimaryTextInput = props => {
 const styles = StyleSheet.create({
   input: {
     width: '100%',
-    backgroundColor: '#fff',
-    marginBottom: '3%',
-    borderRadius: 500,
+    backgroundColor: 'lightgrey',
+    marginBottom: 10,
   },
 });
 

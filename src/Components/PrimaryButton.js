@@ -1,15 +1,16 @@
 import React from 'react';
 import {TouchableHighlight, StyleSheet} from 'react-native';
-import Text from '../Components/Text';
+import Text from 'components/Text';
 
-const PrimaryButton = ({text, onPress, style, textStyle, disabled}) => {
+const PrimaryButton = ({children, onPress, style, disabled}) => {
   return (
     <TouchableHighlight
       style={[styles.primaryButton, style]}
       onPress={onPress}
       underlayColor="#cac7c6"
-      disabled={disabled}>
-      <Text style={[styles.primaryButtonText, textStyle]}> {text} </Text>
+      disabled={disabled}
+    >
+      {children}
     </TouchableHighlight>
   );
 };
@@ -21,12 +22,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     margin: '4%',
-  },
-
-  primaryButtonText: {
-    fontSize: 16,
-    color: '#F6F9FC',
-    margin: '5%',
+    padding: 12
   },
 });
 

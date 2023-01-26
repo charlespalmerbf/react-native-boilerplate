@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {Link} from 'react-router-native';
 
-import PrimaryButton from '../Components/PrimaryButton';
-import PageContainer from '../Components/PageContainer';
-import PrimaryTextInput from '../Components/TextInput';
-import Text from '../Components/Text';
+import PrimaryButton from 'components/PrimaryButton';
+import PageContainer from 'components/PageContainer';
+import PrimaryTextInput from 'components/TextInput';
+import {MediumText} from 'components/Text';
 
 const FieldRow = props => {
   return (
     <>
-      <Text style={styles.pageHeaders}>{props.rowName}</Text>
+      <MediumText style={styles.pageHeaders}>{props.rowName}</MediumText>
 
       <PrimaryTextInput
         placeholder={props.rowName}
@@ -31,7 +31,7 @@ const LoginScreen = () => {
   return (
     <ScrollView>
       <PageContainer>
-        <Text style={styles.pageTitle}>Create An Account</Text>
+        <MediumText style={styles.pageTitle}>Create An Account</MediumText>
 
         <FieldRow
           rowName={'Full Name'}
@@ -59,13 +59,14 @@ const LoginScreen = () => {
           onChangeText={val => setEmail(val)}
         />
 
-        <PrimaryButton text="Sign Up" onPress={() => console.log('Test')} />
+        <PrimaryButton onPress={() => console.log('Test')}><MediumText>Login</MediumText></PrimaryButton>
 
         <Link
           to="/login"
           underlayColor="#cac7c6"
-          style={styles.secondaryButton}>
-          <Text style={styles.secondaryButtonText}> Go Back </Text>
+          style={styles.secondaryButton}
+        >
+          <MediumText style={styles.secondaryButtonText}> Go Back </MediumText>
         </Link>
       </PageContainer>
     </ScrollView>
