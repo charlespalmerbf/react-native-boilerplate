@@ -2,18 +2,16 @@ import React, {useEffect} from 'react';
 import {NativeRouter as Router, Route, Routes} from 'react-router-native';
 import {StatusBar} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import Orientation from 'react-native-orientation-locker';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
 
-import Login from 'screens/Login';
-import Register from 'screens/Register';
+import Login from './src/Screens/Login';
+import Register from './src/Screens/Register';
 
-import LoginProvider from 'context/LoginProvider';
+import LoginProvider from './src/Context/LoginProvider';
 
 export default function App() {
   useEffect(() => {
     SplashScreen?.hide();
-    Orientation.lockToPortrait();
     SystemNavigationBar.setNavigationBarDividerColor("transparent")
     SystemNavigationBar.setNavigationColor("transparent")
   }, []);

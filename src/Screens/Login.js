@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import {ScrollView, Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 import {Link, useNavigate} from 'react-router-native';
 
-import PrimaryButton from 'components/PrimaryButton';
-import PageContainer from 'components/PageContainer';
-import PrimaryTextInput from 'components/TextInput';
-import {MediumText} from 'components/Text';
+import PrimaryButton from '../Components/PrimaryButton';
+import PageContainer from '../Components/PageContainer';
+import PrimaryTextInput from '../Components/TextInput';
+import {MediumText} from '../Components/Text';
 
-import {useLogin} from 'context/LoginContext';
-import AndroidBackHandler from 'components/AndroidBackHandler';
+import {useLogin} from '../Context/LoginContext';
+import AndroidBackHandler from '../Components/AndroidBackHandler';
 
 const LoginScreen = () => {
   const [password, setPassword] = useState();
@@ -22,7 +22,7 @@ const LoginScreen = () => {
       <AndroidBackHandler onPress={() => console.log("FIRING")}/>
       <Image
         style={styles.logoImage}
-        source={require('assets/logo.png')}
+        source={require('../Assets/logo.png')}
       />
 
       <MediumText style={styles.pageTitle}>Welcome</MediumText>
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
   },
 
   logoImage: {
+    marginTop: 100,
     height: 200,
     resizeMode: 'contain',
   },

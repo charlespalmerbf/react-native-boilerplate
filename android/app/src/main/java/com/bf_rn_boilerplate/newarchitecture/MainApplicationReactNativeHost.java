@@ -1,4 +1,4 @@
-package com.toast_app.newarchitecture;
+package com.bf_react_native_boilerplate.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.toast_app.BuildConfig;
-import com.toast_app.newarchitecture.components.MainComponentsRegistry;
-import com.toast_app.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.bf_react_native_boilerplate.BuildConfig;
+import com.bf_react_native_boilerplate.newarchitecture.components.MainComponentsRegistry;
+import com.bf_react_native_boilerplate.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.toast_app;
+package com.bf_react_native_boilerplate;
 
 import android.os.Bundle;
 import org.devio.rn.splashscreen.SplashScreen;
@@ -17,7 +17,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "toast_app";
+    return "bf_react_native_boilerplate";
   }
 
   @Override

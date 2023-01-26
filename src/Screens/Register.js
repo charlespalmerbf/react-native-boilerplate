@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {Link} from 'react-router-native';
 
-import PrimaryButton from 'components/PrimaryButton';
-import PageContainer from 'components/PageContainer';
-import PrimaryTextInput from 'components/TextInput';
-import {MediumText} from 'components/Text';
+import PrimaryButton from '../Components/PrimaryButton';
+import PageContainer from '../Components/PageContainer';
+import PrimaryTextInput from '../Components/TextInput';
+import {MediumText} from '../Components/Text';
 
 const FieldRow = props => {
   return (
