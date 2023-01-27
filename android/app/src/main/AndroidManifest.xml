@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.toast_app">
+  package="com.bf_react_native_boilerplate">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

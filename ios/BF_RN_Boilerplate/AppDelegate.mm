@@ -45,7 +45,7 @@
   bridge.surfacePresenter = _bridgeAdapter.surfacePresenter;
 #endif
 
-  UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"toast_app", nil);
+  UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"bf_react_native_boilerplate", nil);
 
   if (@available(iOS 13.0, *)) {
     rootView.backgroundColor = [UIColor systemBackgroundColor];

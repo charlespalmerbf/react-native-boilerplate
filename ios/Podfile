@@ -4,7 +4,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '11.0'
 install! 'cocoapods', :deterministic_uuids => false
 
-target 'toast_app' do
+target 'bf_react_native_boilerplate' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -29,7 +29,7 @@ target 'toast_app' do
 
   pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
 
-  target 'toast_appTests' do
+  target 'bf_react_native_boilerplateTests' do
     inherit! :complete
     # Pods for testing
   end

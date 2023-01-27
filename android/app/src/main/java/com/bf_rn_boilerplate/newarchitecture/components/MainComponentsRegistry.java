@@ -1,4 +1,4 @@
-package com.toast_app.newarchitecture.components;
+package com.bf_react_native_boilerplate.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
