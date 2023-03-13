@@ -18,8 +18,6 @@
 
 #import <react/config/ReactNativeConfig.h>
 
-#import "Orientation.h"
-
 @interface AppDelegate () <RCTCxxBridgeDelegate, RCTTurboModuleManagerDelegate> {
   RCTTurboModuleManager *_turboModuleManager;
   RCTSurfacePresenterBridgeAdapter *_bridgeAdapter;
@@ -45,7 +43,7 @@
   bridge.surfacePresenter = _bridgeAdapter.surfacePresenter;
 #endif
 
-  UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"BF_RN_Boilerplate", nil);
+  UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"petooly_app", nil);
 
   if (@available(iOS 13.0, *)) {
     rootView.backgroundColor = [UIColor systemBackgroundColor];
@@ -107,14 +105,6 @@
 {
   return RCTAppSetupDefaultModuleFromClass(moduleClass);
 }
-
-- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-    while ([[UIDevice currentDevice] isGeneratingDeviceOrientationNotifications]) {
-        [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-    }
-  
-    return [Orientation getOrientation];
-  }
 
 #endif
 

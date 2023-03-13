@@ -1,4 +1,4 @@
-package com.bf_rn_boilerplate.newarchitecture;
+package com.petooly_app.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.bf_rn_boilerplate.BuildConfig;
-import com.bf_rn_boilerplate.newarchitecture.components.MainComponentsRegistry;
-import com.bf_rn_boilerplate.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.petooly_app.BuildConfig;
+import com.petooly_app.newarchitecture.components.MainComponentsRegistry;
+import com.petooly_app.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

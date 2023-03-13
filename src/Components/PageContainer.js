@@ -1,23 +1,40 @@
 import React from 'react';
-import {View, StyleSheet, Platform} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {moderateScale} from 'react-native-size-matters';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-const PageContainer = ({children, noPadding}) => {
+import Header from 'components/Header';
+
+import theme from 'theme';
+
+const PageContainer = ({children, disableScroll, contentStyle}) => {
   return (
-    <View style={[styles.container, noPadding && styles.noPadding]}>
-      {children}
+    <View style={styles.container}>
+      <Header />
+      <KeyboardAwareScrollView
+        style={styles.contentView}
+        contentContainerStyle={[styles.containerStyle, contentStyle]}
+        enableAutomaticScroll={!disableScroll}>
+        {children}
+      </KeyboardAwareScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  noPadding: {
-    padding: 0,
-  },
   container: {
-    backgroundColor: '#FAF6F4',
+    display: 'flex',
+    flex: 1,
+    backgroundColor: theme.colors.white,
     alignItems: 'center',
-    padding: 36,
-    paddingTop: Platform.OS === 'ios' ? 50 : 36,
+  },
+  contentView: {
+    width: '100%',
+  },
+  containerStyle: {
+    padding: moderateScale(20),
+    flexGrow: 1,
+    justifyContent: 'space-between',
   },
 });
 

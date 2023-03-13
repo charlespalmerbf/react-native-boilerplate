@@ -1,14 +1,32 @@
 import React from 'react';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Platform,
+  Image,
+} from 'react-native';
+import {useNavigate} from 'react-router-native';
+import {moderateScale} from 'react-native-size-matters';
 
-import {View, StyleSheet} from 'react-native';
+import {MediumText} from 'components/Text';
 
-import Text from '../Components/Text';
+import theme from 'theme';
 
-const Header = () => {
+const Header = props => {
+  const navigate = useNavigate();
+
   return (
     <View style={styles.container}>
-      <Text>Icon</Text>
-      <Text>Logo</Text>
+      <TouchableOpacity onPress={() => navigate(-1)} style={styles.backButton}>
+        <MediumText style={styles.backButtonText}>{'<--'}</MediumText>
+      </TouchableOpacity>
+      <Image
+        source={require('assets/toast-logo.png')}
+        style={styles.logo}
+        resizeMode={'contain'}
+      />
+      <View />
     </View>
   );
 };
@@ -16,12 +34,19 @@ const Header = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 56,
     display: 'flex',
-    backgroundColor: 'grey',
-    flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    padding: moderateScale(20),
+    marginTop: Platform.OS === 'ios' ? moderateScale(20) : 0,
+    flexDirection: 'row',
+  },
+  backButtonText: {
+    color: theme.colors.grey.text,
+    fontSize: moderateScale(20),
+  },
+  logo: {
+    width: '50%',
+    height: moderateScale(20),
   },
 });
 

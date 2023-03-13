@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {View, Animated, Modal, StyleSheet} from 'react-native';
+import {moderateScale} from 'react-native-size-matters';
 
-import Text from '../Components/Text';
-import PrimaryButton from './PrimaryButton';
+import theme from 'theme';
 
 const ModalPopup = ({visible, children}) => {
   const [showModal, setShowModal] = useState(visible);
@@ -51,13 +51,8 @@ const ModalPopup = ({visible, children}) => {
   );
 };
 
-const Popup = ({title, onDismiss}) => {
-  return (
-    <ModalPopup visible={true}>
-      <Text style={styles.title}>{title}</Text>
-      <PrimaryButton text={'Close Popup'} onPress={onDismiss} />
-    </ModalPopup>
-  );
+const CorePopup = ({children, visible}) => {
+  return <ModalPopup visible={visible}>{children}</ModalPopup>;
 };
 
 const styles = StyleSheet.create({
@@ -69,22 +64,12 @@ const styles = StyleSheet.create({
   },
 
   modalContainer: {
-    width: '80%',
-    backgroundColor: 'white',
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-    borderRadius: 20,
+    display: 'flex',
+    width: '90%',
+    backgroundColor: theme.colors.grey.background,
+    borderRadius: moderateScale(10),
     elevation: 20,
-    maxHeight: '75%',
-  },
-
-  title: {
-    marginVertical: 5,
-    fontSize: 14,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: 'black',
   },
 });
 
-export default Popup;
+export default CorePopup;

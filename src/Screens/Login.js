@@ -1,117 +1,96 @@
-import React, {useState} from 'react';
-import {ScrollView, Image, StyleSheet} from 'react-native';
-import {Link, useNavigate} from 'react-router-native';
+import React, {useState, useRef, useEffect} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {useNavigate} from 'react-router-native';
 
-import PrimaryButton from '../Components/PrimaryButton';
-import PageContainer from '../Components/PageContainer';
-import PrimaryTextInput from '../Components/TextInput';
-import Text from '../Components/Text';
+import PrimaryButton from 'components/buttons/PrimaryButton';
+import TitledTextInput from 'components/TitledTextInput';
 
-import {usePopup} from '../Context/PopupContext';
-import {useLogin} from '../Context/LoginContext';
-import AndroidBackHandler from '../Components/AndroidBackHandler';
+import {useLogin} from 'context/LoginContext';
+import PageContainer from 'components/PageContainer';
+import LoadingScreen from 'components/LoadingScreen';
+import {getSessionValues} from 'Storage';
 
 const LoginScreen = () => {
-  const [password, setPassword] = useState();
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState(false);
+  const [autoLoggingIn, setAutoLoggingIn] = useState(true);
 
   const navigate = useNavigate();
-  const popup = usePopup();
   const login = useLogin();
+  const passwordRef = useRef();
+
+  const onPressSubmit = async () => {
+    setLoading(true);
+    try {
+      await login.login(email, password);
+      navigate('/dashboard');
+    } catch (e) {
+      setError(e);
+    }
+    setLoading(false);
+  };
+
+  const fetchStorage = async () => {
+    const storage = await getSessionValues();
+    if (storage?.token) {
+      try {
+        await login.autoLogin(storage.token);
+        navigate('dashboard');
+      } catch {}
+    }
+    setAutoLoggingIn(false);
+  };
+
+  useEffect(() => {
+    fetchStorage();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (autoLoggingIn) {
+    return <LoadingScreen />;
+  }
 
   return (
-    <ScrollView style={{backgroundColor: "#FAF6F4"}}>
-      <PageContainer>
-        <AndroidBackHandler onPress={() => console.log("FIRING")}/>
-        <Image
-          style={styles.logoImage}
-          source={require('../Assets/logo.png')}
-        />
-
-        <Text style={styles.pageTitle}>Welcome</Text>
-
-        <Text style={styles.pageHeaders}>Email Address</Text>
-
-        <PrimaryTextInput
-          placeholder={'Email Address'}
+    <PageContainer contentContainerStyle={styles.container} bounces={false}>
+      <View />
+      <View>
+        <TitledTextInput
+          placeholder={'Email'}
           value={email}
           onChangeText={val => setEmail(val)}
+          onSubmitEditing={() => passwordRef?.current?.focus()}
+          returnKeyType={'go'}
+          disabled={loading}
+          editable={!loading}
+          error={error}
         />
 
-        <Text style={styles.pageHeaders}>Password</Text>
-
-        <PrimaryTextInput
+        <TitledTextInput
           placeholder={'Password'}
           value={password}
           onChangeText={val => setPassword(val)}
+          type={'password'}
           secureTextEntry={true}
+          innerRef={passwordRef}
+          editable={!loading}
+          error={error}
         />
-
-        <Link
-          to="/forgot-password"
-          underlayColor="#cac7c6"
-          style={styles.forgottenPassword}>
-          <Text style={styles.forgottenPasswordText}>Forgotten password? </Text>
-        </Link>
-
-        <PrimaryButton text="Sign In" onPress={() => console.log('Sign in')} />
 
         <PrimaryButton
-          text="Sign Up"
-          onPress={() => navigate('/register')}
-          style={styles.signupButton}
-          textStyle={styles.signupButton}
+          title={'Login'}
+          onPress={onPressSubmit}
+          // disabled={!email || !password}
+          loading={loading}
         />
-      </PageContainer>
-    </ScrollView>
+      </View>
+      <View />
+    </PageContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  pageTitle: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#363636',
-    marginVertical: 20,
-    alignSelf: 'flex-start',
-  },
-
-  pageHeaders: {
-    fontSize: 15,
-    color: '#363636',
-    alignSelf: 'flex-start',
-    marginTop: 10,
-  },
-
-  logoImage: {
-    height: 200,
-    resizeMode: 'contain',
-  },
-
-  forgottenPassword: {
-    marginBottom: 33,
-    alignSelf: 'flex-start',
-  },
-
-  forgottenPasswordText: {
-    color: '#363636',
-    fontSize: 17,
-  },
-
-  secondaryButton: {
-    marginTop: 20,
-    padding: 10,
-    borderRadius: 10,
-  },
-
-  secondaryButtonText: {
-    fontSize: 16,
-    color: '#0D0334',
-  },
-
-  signupButton: {
-    backgroundColor: '#E2E1DC',
-  },
-});
+const styles = StyleSheet.create({});
 
 export default LoginScreen;
