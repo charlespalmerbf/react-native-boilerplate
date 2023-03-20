@@ -4,16 +4,11 @@ import {StatusBar} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
 
-<<<<<<< Updated upstream
-import Login from './src/Screens/Login';
-import Register from './src/Screens/Register';
-=======
 import Login from 'screens/Login';
 import ResetPassword from 'screens/ResetPassword';
 import Register from 'screens/Register';
 
 import Dashboard from 'screens/Dashboard';
->>>>>>> Stashed changes
 
 import LoginProvider from './src/Context/LoginProvider';
 

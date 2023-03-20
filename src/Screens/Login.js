@@ -120,52 +120,6 @@ const LoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
-<<<<<<< Updated upstream
-  pageTitle: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#363636',
-    marginVertical: 20,
-    alignSelf: 'flex-start',
-  },
-
-  pageHeaders: {
-    fontSize: 15,
-    color: '#363636',
-    alignSelf: 'flex-start',
-    marginTop: 10,
-  },
-
-  logoImage: {
-    marginTop: 100,
-    height: 200,
-    resizeMode: 'contain',
-  },
-
-  forgottenPassword: {
-    marginBottom: 33,
-    alignSelf: 'flex-start',
-  },
-
-  forgottenPasswordText: {
-    color: '#363636',
-    fontSize: 17,
-  },
-
-  secondaryButton: {
-    marginTop: 20,
-    padding: 10,
-    borderRadius: 10,
-  },
-
-  secondaryButtonText: {
-    fontSize: 16,
-    color: '#0D0334',
-  },
-
-  signupButton: {
-    backgroundColor: '#E2E1DC',
-=======
   container: {
     display: 'flex',
     flexGrow: 1,
@@ -201,7 +155,6 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     fontSize: moderateScale(14),
     marginBottom: moderateScale(25),
->>>>>>> Stashed changes
   },
 });
 

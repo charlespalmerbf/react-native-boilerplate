@@ -12,7 +12,6 @@ const theme = {
     blue: {
       main: '#2BC5F5',
     },
-  },
 };
 
 export default theme;
