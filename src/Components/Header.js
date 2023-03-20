@@ -7,8 +7,15 @@ import Text from 'components/Text';
 const Header = () => {
   return (
     <View style={styles.container}>
-      <Text>Icon</Text>
-      <Text>Logo</Text>
+      <TouchableOpacity onPress={() => navigate(-1)} style={styles.backButton}>
+        <MediumText style={styles.backButtonText}>{'<--'}</MediumText>
+      </TouchableOpacity>
+      <Image
+        source={require('assets/logo.png')}
+        style={styles.logo}
+        resizeMode={'contain'}
+      />
+      <View />
     </View>
   );
 };

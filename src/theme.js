@@ -6,7 +6,13 @@ const theme = {
         grey: '#8F8F8F',
       },
     },
-  };
-  
-  export default theme;
-  
+    grey: {
+      text: '#8C827A',
+    },
+    blue: {
+      main: '#2BC5F5',
+    },
+  },
+};
+
+export default theme;

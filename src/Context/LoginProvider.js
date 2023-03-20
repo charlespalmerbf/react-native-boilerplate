@@ -1,44 +1,51 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 
-import {LoginContext, useLogin, useLoggedInUser} from 'context/LoginContext';
+import {LoginContext, useLogin} from 'context/LoginContext';
+import {clearSession, storeSessionValues} from 'Storage';
 
-class LoginProvider extends Component {
-  constructor(props) {
-    super(props);
+import { loginUser } from 'api/api';
 
-    this.state = {
-      user: null,
-    };
-  }
+const LoginProvider = props => {
+  const [user, setUser] = useState(null);
 
-  login = async (username, password) => {
-    const {user} = await LOGINFUNCTION(username, password);
-
-    this.setState({user});
-    return user;
+  const saveUser = async (loggedInUser, storeInfo) => {
+    storeInfo && storeSessionValues('blah blah');
+    setUser({userId: loggedInUser.userid, token: loggedInUser.password});
   };
 
-  logout = async () => {
-    //run api login command if needed
-
-    this.setUser(null);
+  const autoLogin = async token => {
+    try {
+      //fetch user w/ token
+      const loggedInUser = {email: 'test@gmail.com', password: 'Admin123!'};
+      await saveUser(loggedInUser);
+    } catch (e) {
+      throw e;
+    }
   };
 
-  render() {
-    const value = {
-      user: this.state.user,
-      login: this.login,
-      logout: this.logout,
-    };
+  const login = async (email, password) => {
+    try {
+      const loggedInUser = await loginUser(email, password);
+      await saveUser(loggedInUser, true);
+      return true;
+    } catch (e) {
+      throw e;
+    }
+  };
 
-    return (
-      <LoginContext.Provider value={value}>
-        {this.props.children}
-      </LoginContext.Provider>
-    );
-  }
-}
+  const logout = async () => {
+    // logoutUser(user.session);
+    clearSession();
+    setUser(null);
+  };
 
-export {LoginContext, useLogin, useLoggedInUser};
+  return (
+    <LoginContext.Provider value={{user, login, logout, autoLogin}}>
+      {props.children}
+    </LoginContext.Provider>
+  );
+};
+
+export {LoginContext, useLogin};
 
 export default LoginProvider;

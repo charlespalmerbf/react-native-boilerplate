@@ -69,11 +69,10 @@ const styles = StyleSheet.create({
   },
 
   modalContainer: {
-    width: '80%',
-    backgroundColor: 'white',
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-    borderRadius: 20,
+    display: 'flex',
+    width: '90%',
+    backgroundColor: theme.colors.white,
+    borderRadius: moderateScale(10),
     elevation: 20,
     maxHeight: '75%',
   },
