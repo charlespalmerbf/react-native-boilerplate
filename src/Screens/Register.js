@@ -1,124 +1,160 @@
-import React, {useState} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
-import {Link} from 'react-router-native';
+import React, {useState, useEffect, useRef} from 'react';
+import {StyleSheet, View, Image} from 'react-native';
+import {useNavigate} from 'react-router-native';
+import {moderateScale} from 'react-native-size-matters';
 
-import PrimaryButton from '../Components/PrimaryButton';
-import PageContainer from '../Components/PageContainer';
-import PrimaryTextInput from '../Components/TextInput';
-import {MediumText} from '../Components/Text';
+import PrimaryButton from 'components/buttons/PrimaryButton';
+import TitledTextInput from 'components/TitledTextInput';
+import {MediumText} from 'components/Text';
+import InfoPopup from 'components/popups/InfoPopup';
 
-const FieldRow = props => {
+import theme from 'theme';
+
+import {useLogin} from 'context/LoginContext';
+import {getSessionValues} from 'Storage';
+import LoadingScreen from 'components/LoadingScreen';
+import PageContainer from 'components/PageContainer';
+import { registerUser } from 'api/api';
+
+const Register = () => {
+  const [username, setUsername] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const navigate = useNavigate();
+  const login = useLogin();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const onPressRegister = async () => {
+    setLoading(true);
+    try {
+      const res = await registerUser(email, password);
+      setModalOpen(["Success", res])
+    } catch (e) {
+      setError(e);
+    }
+    setLoading(false);
+  };
+
   return (
-    <>
-      <MediumText style={styles.pageHeaders}>{props.rowName}</MediumText>
-
-      <PrimaryTextInput
-        placeholder={props.rowName}
-        value={props.value}
-        onChangeText={props.onChangeText}
-        secureTextEntry={props.secureTextEntry}
-      />
-    </>
-  );
-};
-
-const LoginScreen = () => {
-  const [fullname, setFullname] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
-  const [email, setEmail] = useState();
-
-  return (
-    <ScrollView>
-      <PageContainer>
-        <MediumText style={styles.pageTitle}>Create An Account</MediumText>
-
-        <FieldRow
-          rowName={'Full Name'}
-          value={fullname}
-          onChangeText={val => setFullname(val)}
+    <PageContainer
+      contentContainerStyle={styles.container}
+      bounces={false}
+      hideHeader={true}
+    >
+      <View style={styles.topContainer}>
+        <Image
+          source={require('assets/logo.png')}
+          style={styles.logo}
+          resizeMode={'contain'}
         />
+        <MediumText style={styles.pageTitle}>
+            Enter your details below to reset your password and gain access to the
+            app
+        </MediumText>
 
-        <FieldRow
-          rowName={'Password'}
-          value={password}
-          onChangeText={val => setPassword(val)}
-          secureTextEntry={true}
-        />
+          <TitledTextInput
+            title={'Username'}
+            placeholder={'John doe'}
+            value={username}
+            onChangeText={val => setUsername(val)}
+            onFocus={() => setError(false)}
+            secureTextEntry={true}
+            innerRef={passwordRef}
+          />
+          <TitledTextInput
+            title={'Email'}
+            placeholder={'John.doe@email.co.uk'}
+            value={email}
+            onChangeText={val => setEmail(val)}
+            error={error}
+            onFocus={() => setError(false)}
+            onSubmitEditing={() => passwordRef?.current?.focus()}
+            innerRef={emailRef}
+            returnKeyType={'go'}
+          />
 
-        <FieldRow
-          rowName={'Confirm Password'}
-          value={confirmPassword}
-          onChangeText={val => setConfirmPassword(val)}
-          secureTextEntry={true}
-        />
-
-        <FieldRow
-          rowName={'Email Address'}
-          value={email}
-          onChangeText={val => setEmail(val)}
-        />
-
-        <PrimaryButton onPress={() => console.log('Test')}><MediumText>Login</MediumText></PrimaryButton>
-
-        <Link
-          to="/login"
-          underlayColor="#cac7c6"
-          style={styles.secondaryButton}
+          <TitledTextInput
+            title={'Password'}
+            placeholder={'************'}
+            value={password}
+            onChangeText={val => setPassword(val)}
+            onFocus={() => setError(false)}
+            type={'password'}
+            secureTextEntry={true}
+            innerRef={passwordRef}
+          />
+      </View>
+      <View style={styles.bottom}>
+        <View style={styles.buttonRow}>
+          <PrimaryButton
+            title={'Login'}
+            onPress={onPressRegister}
+            disabled={!username || !email || !password}
+            loading={loading}
+          />
+        </View>
+        <MediumText
+          style={styles.backToLoginText}
+          onPress={() => navigate('/')}
         >
-          <MediumText style={styles.secondaryButtonText}> Go Back </MediumText>
-        </Link>
-      </PageContainer>
-    </ScrollView>
+          Back to login
+        </MediumText>
+      </View>
+      <InfoPopup
+        title={modalOpen[0]}
+        info={modalOpen[1]}
+        visible={modalOpen}
+        onPress={() => {
+          navigate(-1);
+          setModalOpen(false);
+        }}
+      />
+    </PageContainer>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexGrow: 1,
+    justifyContent: 'space-between',
+    backgroundColor: theme.colors.grey.background,
+    paddingHorizontal: moderateScale(32),
+  },
+  topContainer: {
+    marginTop: moderateScale(20),
+  },
+  logo: {
+    width: '75%',
+    alignSelf: 'center',
+    height: moderateScale(100),
+  },
   pageTitle: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#363636',
-    marginVertical: 20,
+    textAlign: 'center',
+    marginBottom: moderateScale(50),
+    fontSize: moderateScale(14),
+    marginTop: moderateScale(5),
   },
-
-  subHeading: {
-    fontSize: 15,
-    color: '#363636',
-    paddingBottom: 15,
+  bottom: {
+    alignItems: 'center',
   },
-
-  pageHeaders: {
-    fontSize: 15,
-    color: '#363636',
-    alignSelf: 'flex-start',
-    marginTop: 5,
+  buttonRow: {
+    flexDirection: 'row',
   },
-
-  logoImage: {
-    width: 250,
-    height: 250,
-    resizeMode: 'contain',
+  skipButton: {
+    backgroundColor: theme.colors.dark,
+    marginLeft: moderateScale(10),
   },
-
-  forgottenPassword: {
-    marginBottom: 33,
-    alignSelf: 'flex-start',
+  backToLoginText: {
+    marginVertical: moderateScale(30),
+    fontSize: moderateScale(14)
   },
-
-  forgottenPasswordText: {
-    color: '#363636',
-    fontSize: 17,
-  },
-
-  secondaryButton: {
-    padding: 10,
-    borderRadius: 10,
-  },
-
-  secondaryButtonText: {
-    fontSize: 16,
-    color: '#0D0334',
-  },
+  
 });
 
-export default LoginScreen;
+export default Register;
