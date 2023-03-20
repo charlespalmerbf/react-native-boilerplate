@@ -4,6 +4,9 @@ import SplashScreen from 'react-native-splash-screen';
 import {BackHandler} from 'react-native';
 
 import Login from 'screens/Login';
+import ResetPassword from 'screens/ResetPassword';
+import Register from 'screens/Register';
+
 import Dashboard from 'screens/Dashboard';
 
 import LoginProvider from 'context/LoginProvider';
@@ -30,6 +33,9 @@ export default function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/register" element={<Register />} />
+
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </Router>

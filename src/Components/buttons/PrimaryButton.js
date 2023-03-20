@@ -16,7 +16,8 @@ const PrimaryButton = ({title, loading, onPress, style, disabled}) => {
     <TouchableOpacity
       style={[styles.primaryButton, isDisabled && styles.disabledStyle, style]}
       onPress={onPress}
-      disabled={isDisabled}>
+      disabled={isDisabled}
+    >
       <View style={styles.contentView}>
         <MediumText
           style={[styles.title, loading && {marginRight: moderateScale(10)}]}>
@@ -36,7 +37,7 @@ const PrimaryButton = ({title, loading, onPress, style, disabled}) => {
 const styles = StyleSheet.create({
   primaryButton: {
     flex: 1,
-    backgroundColor: theme.colors.orange.main,
+    backgroundColor: theme.colors.blue.main,
     borderRadius: moderateScale(8),
     alignItems: 'center',
     justifyContent: 'center',

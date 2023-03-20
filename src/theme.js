@@ -8,9 +8,8 @@ const theme = {
     grey: {
       text: '#8C827A',
     },
-    orange: {
-      main: '#FF9E18',
-      shade: '#FFF1DD',
+    blue: {
+      main: '#2BC5F5',
     },
   },
 };

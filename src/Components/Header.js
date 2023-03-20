@@ -22,7 +22,7 @@ const Header = props => {
         <MediumText style={styles.backButtonText}>{'<--'}</MediumText>
       </TouchableOpacity>
       <Image
-        source={require('assets/toast-logo.png')}
+        source={require('assets/logo.png')}
         style={styles.logo}
         resizeMode={'contain'}
       />

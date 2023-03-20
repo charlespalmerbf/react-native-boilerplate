@@ -7,7 +7,7 @@ const LoadingScreen = () => {
   return (
     <View style={styles.container}>
       <ActivityIndicator
-        color={theme.colors.orange.main}
+        color={theme.colors.blue.main}
         size={moderateScale(50)}
       />
     </View>

@@ -7,10 +7,10 @@ import Header from 'components/Header';
 
 import theme from 'theme';
 
-const PageContainer = ({children, disableScroll, contentStyle}) => {
+const PageContainer = ({children, disableScroll, contentStyle, hideHeader}) => {
   return (
     <View style={styles.container}>
-      <Header />
+      {!hideHeader && <Header />}
       <KeyboardAwareScrollView
         style={styles.contentView}
         contentContainerStyle={[styles.containerStyle, contentStyle]}

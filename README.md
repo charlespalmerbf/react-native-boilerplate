@@ -1,4 +1,4 @@
-﻿# Petooly Mobile App
+﻿# BF Boilerplate Mobile App
  
 ## How To Run The Project Locally
 
@@ -56,7 +56,7 @@ Step 3: Now in this android folder, run this command
 
 Step 4: You'll find the apk file in the following path:
 
-```petooly-mobile-application/android/app/build/outputs/apk/debug/app-debug.apk```
+```bf-boilerplate-mobile-application/android/app/build/outputs/apk/debug/app-debug.apk```
 
 ###### How to generate a release .aab
 

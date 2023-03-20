@@ -4,6 +4,7 @@ import PageContainer from 'components/PageContainer';
 import PrimaryButton from 'components/buttons/PrimaryButton';
 import {useLogin} from 'context/LoginContext';
 import {useNavigate} from 'react-router-native';
+import { clearSession } from 'Storage';
 
 const Dashboard = () => {
   const login = useLogin();
@@ -14,6 +15,7 @@ const Dashboard = () => {
       <PrimaryButton
         onPress={() => {
           login.logout();
+          clearSession()
           navigate('/');
         }}
       />

@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import {LoginContext, useLogin} from 'context/LoginContext';
 import {clearSession, storeSessionValues} from 'Storage';
 
+import { loginUser } from 'api/api';
+
 const LoginProvider = props => {
   const [user, setUser] = useState(null);
 
@@ -23,7 +25,7 @@ const LoginProvider = props => {
 
   const login = async (email, password) => {
     try {
-      const loggedInUser = {email, password};
+      const loggedInUser = await loginUser(email, password);
       await saveUser(loggedInUser, true);
       return true;
     } catch (e) {
